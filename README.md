@@ -9,7 +9,7 @@ and requires the NoSleep extension
 <https://github.com/integralpro/nosleep> along with pmset and a 
 launchd and Munki <https://github.com/munki/munki/wiki>. with pmset the laptops will only turn on at the specified time if 
 there is a power source or whenever a power source gets connected after 
-that so it works with our carts just fine. I use Workgroup Manager to set the Shutdown and Poweron times but if youre not using that pmset commands should work.
+that so it works with our carts just fine. I use Workgroup Manager to set the Shutdown and Poweron times but if youre not using that pmset commands should work. I forget the reason why i didnt use the "caffiene" command and went with the nosleep app.
 
 at boot up it will enable nosleep extension both on battery and external power. 
 next my launchd runs a script that checks the time and battery level. if 

@@ -20,7 +20,8 @@ if [ "$SystemHour" = "$TurnOnTime" ] ; then
 		#check system battery 
 		battPercentage=$(pmset -g batt | grep "InternalBattery-0" | cut -c 21-23 | sed s/\%//)
 		if [ "$battPercentage" -gt 50 ] ; then
-
+		
+			#use --auto in case laptop does go to sleep, when opened there will be no visual to the user and they can still log in
 			/usr/local/munki/managedsoftwareupdate --auto
 			sleep 5
 			sudo shutdown -h now

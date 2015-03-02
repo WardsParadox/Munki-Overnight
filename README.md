@@ -2,7 +2,7 @@
 Run Munki Overnight (so laptops can update with lid closed)
 
 I have been working on a way to get laptops to install updates with the lid 
-closed also but wirelessly. 
+closed also but wirelessly. in this repo are the files I use to make the installer pkg using Luggage <https://github.com/unixorn/luggage>.
 
 I came up with this: please note, this works pretty well in my environment 
 and requires the NoSleep extension 

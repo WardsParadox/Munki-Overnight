@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Label</key>
-	<string>edu.riverdale.overnightMunki</string>
+	<string>org.bsd7.techserv.overnightMunki</string>
 	<key>ProgramArguments</key>
 	<array>
 		<string>/etc/hooks/overnightMunki.sh</string>

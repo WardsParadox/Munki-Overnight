@@ -21,11 +21,11 @@
 
 include /usr/local/share/luggage/luggage.make
 
-TITLE=RCS_overnightMunki
-REVERSE_DOMAIN=edu.riverdale
+TITLE=overnightMunki
+REVERSE_DOMAIN=org.bsd7.techserv
 PAYLOAD=pack-overnightMunki.sh \
-	pack-Library-LaunchDaemons-edu.riverdale.overnightMunki.plist \
-	pack-script-postflight	
+	pack-Library-LaunchDaemons-org.bsd7.techserv.overnightMunki.plist \
+	pack-script-postflight
 PACKAGE_VERSION=1.6
 
 pack-overnightMunki.sh: l_etc_hooks

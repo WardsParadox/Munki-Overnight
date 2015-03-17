@@ -5,12 +5,10 @@
 IS_LAPTOP=`/usr/sbin/system_profiler SPHardwareDataType | grep "Model Name" | grep "Book"`
 if [ "$IS_LAPTOP" != "" ]; then
 
-	sudo pmset repeat wakeorpoweron MTWRF 01:00:00;
-	sudo pmset repeat shutdown MTWRFSU 18:00:00
+	sudo pmset repeat wakeorpoweron MTWRF 01:00:00 shutdown MTWRFSU 18:00:00
 else
 	#Other Devices (Desktops) Run Later
-	sudo pmset repeat wakeorpoweron MTWRF 05:00:00;
-	sudo pmset repeat shutdown MTWRFSU 18:00:00
+	sudo pmset repeat wakeorpoweron MTWRF 05:00:00 shutdown MTWRFSU 18:00:00
 fi
 
 exit 0

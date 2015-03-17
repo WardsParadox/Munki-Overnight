@@ -6,7 +6,7 @@
 	<string>org.bsd7.techserv.overnightMunki</string>
 	<key>ProgramArguments</key>
 	<array>
-		<string>/etc/hooks/overnightMunki.sh</string>
+		<string>/usr/local/etc/overnightMunki.py</string>
 	</array>
 	<key>RunAtLoad</key>
 	<true/>

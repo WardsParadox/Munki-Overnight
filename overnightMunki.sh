@@ -3,10 +3,7 @@
 #checks for the hour of the time only; cuts to format (HH)
 SystemHour=$(date "+TIME:: %H" | cut -c 8-9)
 
-#hour of time we have set computers to turn on (HH) done this way so it'll only run within that hour
-TurnOnTime=01
-
-if [ "$SystemHour" = "$TurnOnTime" ] ; then
+if [ "$SystemHour" = 01 ] ; then
 
 		#set closing lid not to sleep laptop
 		#/usr/local/bin/NoSleepCtrl -a -b -s 1,1

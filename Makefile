@@ -22,15 +22,9 @@
 include /usr/local/share/luggage/luggage.make
 
 TITLE=overnightMunki
-<<<<<<< HEAD
-REVERSE_DOMAIN=com.example
-PAYLOAD=pack-overnightMunki.py \
-	pack-Library-LaunchDaemons-com.example.overnightMunki.plist \
-=======
 REVERSE_DOMAIN=org.bsd7.techserv
 PAYLOAD=pack-overnightMunki.py \
 	pack-Library-LaunchDaemons-org.bsd7.techserv.overnightMunki.plist \
->>>>>>> 53f160a52b1ae2cd0d12d427c30e77d44cdf1fc2
 	pack-script-postflight
 PACKAGE_VERSION=1.0
 

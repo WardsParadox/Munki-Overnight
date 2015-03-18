@@ -1,10 +1,11 @@
 #!/usr/bin/python
 
 import datetime
+import time
 import os
 import subprocess
 import re
-import time
+import sys
 
 current_time = datetime.datetime.now().time().hour
 battery_query = re.findall(
@@ -12,10 +13,11 @@ battery_query = re.findall(
 )
 percentage = ''.join(battery_query)[:-1]
 
-print percentage
+print percentage, "% Battery"
 if current_time != 01:
-  print 'Its not time to run updates.'
-  return
+    print "Hour of Day:", current_time
+    print 'Its not time to run updates.'
+    sys.exit(0);
 elif percentage >= 50 and current_time == 01:
   # Use --auto in case laptop does go to sleep,
   # When opened there will be no visual to the user and they can still log in

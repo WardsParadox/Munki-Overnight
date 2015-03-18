@@ -23,10 +23,10 @@ include /usr/local/share/luggage/luggage.make
 
 TITLE=overnightMunki
 REVERSE_DOMAIN=org.bsd7.techserv
-PAYLOAD=pack-overnightMunki.sh \
+PAYLOAD=pack-overnightMunki.py \
 	pack-Library-LaunchDaemons-org.bsd7.techserv.overnightMunki.plist \
 	pack-script-postflight
-PACKAGE_VERSION=1.6
+PACKAGE_VERSION=1.0
 
 pack-overnightMunki.sh: l_etc_hooks
 	@sudo mkdir ${WORK_D}/etc

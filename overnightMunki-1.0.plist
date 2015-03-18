@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>RestartAction</key>
+	<string>None</string>
+	<key>autoremove</key>
+	<false/>
+	<key>catalogs</key>
+	<array>
+		<string>testing</string>
+	</array>
+	<key>category</key>
+	<string>System Update</string>
+	<key>description</key>
+	<string>Installs a Plist Utility that installs all Updates at 2 AM for laptops, and 5 AM for desktops.</string>
+	<key>developer</key>
+	<string>BSD7</string>
+	<key>display_name</key>
+	<string>Munki Overnight Update Utility</string>
+	<key>installer_item_hash</key>
+	<string>8d18a5182b6333c107dac007cff60491c590b1ebb10d46e34cbd5244bd3db028</string>
+	<key>installer_item_location</key>
+	<string>system_update/overnightMunki-1.0.dmg</string>
+	<key>installer_item_size</key>
+	<integer>95327</integer>
+	<key>installer_type</key>
+	<string>copy_from_dmg</string>
+	<key>installs</key>
+	<array>
+		<dict>
+			<key>md5checksum</key>
+			<string>e51f3bbc655a199c90d3f732fc624658</string>
+			<key>path</key>
+			<string>/Library/LaunchDaemons/com.example.overnightmunki.plist</string>
+			<key>type</key>
+			<string>file</string>
+		</dict>
+		<dict>
+			<key>md5checksum</key>
+			<string>fe2aeb376aa3979aa56e27aea0e53f51</string>
+			<key>path</key>
+			<string>/usr/local/etc/overnightMunki.py</string>
+			<key>type</key>
+			<string>file</string>
+		</dict>
+	</array>
+	<key>items_to_copy</key>
+	<array>
+		<dict>
+			<key>destination_path</key>
+			<string>/Library/LaunchDaemons</string>
+			<key>group</key>
+			<string>wheel</string>
+			<key>source_item</key>
+			<string>com.example.overnightmunki.plist</string>
+			<key>user</key>
+			<string>root</string>
+		</dict>
+		<dict>
+			<key>destination_path</key>
+			<string>/usr/local/etc/</string>
+			<key>group</key>
+			<string>wheel</string>
+			<key>mode</key>
+			<string>-rwxr-xr-x</string>
+			<key>source_item</key>
+			<string>overnightMunki.py</string>
+			<key>user</key>
+			<string>root</string>
+		</dict>
+	</array>
+	<key>minimum_os_version</key>
+	<string>10.7.5</string>
+	<key>name</key>
+	<string>overnightMunki</string>
+	<key>postinstall_script</key>
+	<string>#!/bin/sh
+
+# Set Laptop Wake Time to 2am
+#If the machine is a laptop, do some laptop-specific things
+IS_LAPTOP=$(/usr/sbin/system_profiler SPHardwareDataType | grep "Model Name" | grep "Book");
+if [ "$IS_LAPTOP" != "" ]; then
+
+	sudo pmset repeat wakeorpoweron MTWRF 01:00:00  shutdown MTWRFSU 18:00:00;
+else
+	#Other Devices (Desktops) Run Later
+	sudo pmset repeat wakeorpoweron MTWRF 05:00:00 shutdown MTWRFSU 18:00:00;
+fi
+
+exit 0;
+</string>
+	<key>postuninstall_script</key>
+	<string>#!/bin/bash
+pmset repeat cancel;
+pmset repeat shutdown MTWRFSU 18:00:00;</string>
+	<key>preinstall_script</key>
+	<string>#!/bin/sh
+mkdir -p /usr/local/etc;
+exit 0;</string>
+	<key>preuninstall_script</key>
+	<string>#!/bin/bash
+launchctl unload /Library/LaunchDaemons/com.example.overnightmunki.plist;
+</string>
+	<key>unattended_install</key>
+	<true/>
+	<key>uninstall_method</key>
+	<string>remove_copied_items</string>
+	<key>uninstallable</key>
+	<true/>
+	<key>version</key>
+	<string>1.0</string>
+</dict>
+</plist>

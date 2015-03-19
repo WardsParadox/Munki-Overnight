@@ -13,9 +13,9 @@
 	<key>category</key>
 	<string>System Update</string>
 	<key>description</key>
-	<string>Installs a Plist Utility that installs all Updates at 2 AM for laptops, and 5 AM for desktops.</string>
+	<string>Installs a LaunchDaemon that installs all Updates at 2 AM for laptops, and 5 AM for desktops.</string>
 	<key>developer</key>
-	<string>BSD7</string>
+	<string>WardsParadox and ldooks</string>
 	<key>display_name</key>
 	<string>Munki Overnight Update Utility</string>
 	<key>installer_item_hash</key>
@@ -29,16 +29,12 @@
 	<key>installs</key>
 	<array>
 		<dict>
-			<key>md5checksum</key>
-			<string>e51f3bbc655a199c90d3f732fc624658</string>
 			<key>path</key>
 			<string>/Library/LaunchDaemons/com.example.overnightmunki.plist</string>
 			<key>type</key>
 			<string>file</string>
 		</dict>
 		<dict>
-			<key>md5checksum</key>
-			<string>fe2aeb376aa3979aa56e27aea0e53f51</string>
 			<key>path</key>
 			<string>/usr/local/etc/overnightMunki.py</string>
 			<key>type</key>

@@ -1,9 +1,6 @@
 # Munki-Overnight
 Run Munki Overnight (so laptops can update with lid closed)
-I don't use Luggage to build my packages. The MakeFile is for the Luggage and
-wasn't touched after a simple update. I have attached the munki .plist file I
-used to push the package out. Build a DMG with the com.example.overnightMunki.plist
-and the overnightMunki.py. Adjust as needed.
+I don't use Luggage to build my packages (removed the MakeFile and postflight, checkout a previous commit to get those back), as I run this via Munki. I have attached a munki .plist file I used to push the files out. Build a DMG with the com.example.overnightMunki.plist and the overnightMunki.py. Adjust as needed.
 
 No warranties provided. Test in your environment.
 

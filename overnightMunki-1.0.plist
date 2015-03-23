@@ -19,7 +19,7 @@
 	<key>display_name</key>
 	<string>Munki Overnight Update Utility</string>
 	<key>installer_item_hash</key>
-	<string>8d18a5182b6333c107dac007cff60491c590b1ebb10d46e34cbd5244bd3db028</string>
+	<string>EDIT ME</string>
 	<key>installer_item_location</key>
 	<string>system_update/overnightMunki-1.0.dmg</string>
 	<key>installer_item_size</key>

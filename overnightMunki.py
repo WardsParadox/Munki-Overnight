@@ -1,5 +1,6 @@
 #!/usr/bin/python
 
+#Libraries
 import datetime
 import time
 import os
@@ -8,12 +9,14 @@ import re
 import sys
 import syslog
 
+#Variables
+version = "1.0"
 current_time = datetime.datetime.now().time().hour
 battery_query = re.findall(
   r'\d+%', subprocess.check_output('pmset -g batt', shell=True)
 )
 percentage = ''.join(battery_query)[:-1]
-syslog.openlog("Overnight Munki Updater")
+syslog.openlog("Overnight Munki Updater V %s" % version)
 
 print percentage, "% Battery"
 syslog.syslog(syslog.LOG_ALERT, "The battery is at %s %%" % percentage)
@@ -26,14 +29,11 @@ elif percentage >= 50 and current_time == 01:
   # Use --auto in case laptop does go to sleep,
   # When opened there will be no visual to the user and they can still log in
   syslog.syslog(syslog.LOG_ALERT, "Running ManagedSoftwareUpdate")
-  subprocess.call(
-    '/usr/bin/caffeinate -i /usr/local/munki/managedsoftwareupdate --auto',
-    shell=True
-  )
+  subprocess.call('/usr/bin/caffeinate -i /usr/local/munki/managedsoftwareupdate -v --auto',shell=True,stdout=subprocess.PIPE)
   time.sleep(5)
   os.system('shutdown -h now')
 
 elif percentage <= 50:
   print 'Battery too low to run updates.'
   syslog.syslog(syslog.LOG_ALERT, "The battery is too low to run updates!! Battery at %s %%. Shutting Down" % percentage)
-  os.system('shutdown -h now')
+os.system('shutdown -h now')

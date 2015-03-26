@@ -21,24 +21,22 @@
 	<key>installer_item_hash</key>
 	<string>EDIT ME</string>
 	<key>installer_item_location</key>
-	<string>system_update/overnightMunki-1.0.dmg</string>
+	<string>system_update/overnightMunki-1.1.0.dmg</string>
 	<key>installer_item_size</key>
-	<integer>95327</integer>
+	<integer>EDIT ME</integer>
 	<key>installer_type</key>
 	<string>copy_from_dmg</string>
 	<key>installs</key>
 	<array>
 		<dict>
 			<key>path</key>
-			<string>/Library/LaunchDaemons/com.example.overnightmunki.plist</string>
+			<string>/var/deployment/receipts/installs/HA_Printer_1.plist</string>
 			<key>type</key>
-			<string>file</string>
-		</dict>
-		<dict>
-			<key>path</key>
-			<string>/usr/local/etc/overnightMunki.py</string>
-			<key>type</key>
-			<string>file</string>
+			<string>plist</string>
+			<key>version</key>
+			<string>1.1.0</string>
+			<key>version_comparison_key</key>
+			<string>version</string>
 		</dict>
 	</array>
 	<key>items_to_copy</key>
@@ -77,14 +75,19 @@
 #If the machine is a laptop, do some laptop-specific things
 IS_LAPTOP=$(/usr/sbin/system_profiler SPHardwareDataType | grep "Model Name" | grep "Book");
 if [ "$IS_LAPTOP" != "" ]; then
-
 	sudo pmset repeat wakeorpoweron MTWRF 01:00:00  shutdown MTWRFSU 18:00:00;
 else
 	#Other Devices (Desktops) Run Later
 	sudo pmset repeat wakeorpoweron MTWRF 05:00:00 shutdown MTWRFSU 18:00:00;
 fi
-
 exit 0;
+# Receipts
+# Create a receipt for the printer
+mkdir -p /var/deployment/receipts/installs;
+/usr/libexec/PlistBuddy -c "Add :version string" /var/deployment/receipts/installs/overnightMunki.plist;
+/usr/libexec/PlistBuddy -c "Set :version 1.1.0" /var/deployment/receipts/installs/overnightMunki.plist;
+
+
 </string>
 	<key>postuninstall_script</key>
 	<string>#!/bin/bash
@@ -105,6 +108,6 @@ launchctl unload /Library/LaunchDaemons/com.example.overnightmunki.plist;
 	<key>uninstallable</key>
 	<true/>
 	<key>version</key>
-	<string>1.0</string>
+	<string>1.1.0</string>
 </dict>
 </plist>

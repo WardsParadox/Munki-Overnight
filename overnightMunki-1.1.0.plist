@@ -30,7 +30,7 @@
 	<array>
 		<dict>
 			<key>path</key>
-			<string>/var/deployment/receipts/installs/HA_Printer_1.plist</string>
+			<string>/var/deployment/receipts/installs/overnightMunki.plist</string>
 			<key>type</key>
 			<string>plist</string>
 			<key>version</key>

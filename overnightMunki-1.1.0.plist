@@ -80,14 +80,14 @@ else
 	#Other Devices (Desktops) Run Later
 	sudo pmset repeat wakeorpoweron MTWRF 05:00:00 shutdown MTWRFSU 18:00:00;
 fi
-exit 0;
+
 # Receipts
 # Create a receipt for the printer
 mkdir -p /var/deployment/receipts/installs;
 /usr/libexec/PlistBuddy -c "Add :version string" /var/deployment/receipts/installs/overnightMunki.plist;
 /usr/libexec/PlistBuddy -c "Set :version 1.1.0" /var/deployment/receipts/installs/overnightMunki.plist;
 
-
+exit 0;
 </string>
 	<key>postuninstall_script</key>
 	<string>#!/bin/bash

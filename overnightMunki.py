@@ -10,7 +10,7 @@ from sys import exit
 import syslog
 
 #Variables
-version = "1.1.0"
+version = "1.1.1"
 current_time = datetime.datetime.now().time().hour
 battery_query = re.findall(
   r'\d+%', subprocess.check_output('pmset -g batt', shell=True)

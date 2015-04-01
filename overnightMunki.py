@@ -20,7 +20,7 @@ syslog.openlog("Overnight Munki Updater V %s" % version)
 
 print percentage, "% Battery"
 syslog.syslog(syslog.LOG_ALERT, "The battery is at %s %%" % percentage)
-if (current_time != 01 or current_time != 05):
+if (current_time != 01) or (current_time != 05):
     print "Hour of Day:", current_time
     print 'It is not time to run updates.'
     syslog.syslog(syslog.LOG_ALERT, "It is %s and is not time to run updates " % current_time)

@@ -57,7 +57,7 @@
 			<key>group</key>
 			<string>wheel</string>
 			<key>mode</key>
-			<string>-rwxr-xr-x</string>
+			<string>rw-r--r--</string>
 			<key>source_item</key>
 			<string>overnightMunki.py</string>
 			<key>user</key>
@@ -108,6 +108,6 @@ launchctl unload /Library/LaunchDaemons/com.example.overnightmunki.plist;
 	<key>uninstallable</key>
 	<true/>
 	<key>version</key>
-	<string>1.1.0</string>
+	<string>1.1.1</string>
 </dict>
 </plist>

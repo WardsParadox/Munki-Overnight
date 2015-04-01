@@ -50,6 +50,8 @@
 			<string>com.example.overnightmunki.plist</string>
 			<key>user</key>
 			<string>root</string>
+			<key>mode</key>
+			<string>u=rw,go=r</string>
 		</dict>
 		<dict>
 			<key>destination_path</key>
@@ -57,7 +59,7 @@
 			<key>group</key>
 			<string>wheel</string>
 			<key>mode</key>
-			<string>rwxr-xr-x</string>
+			<string>u=rwx,go=rx</string>
 			<key>source_item</key>
 			<string>overnightMunki.py</string>
 			<key>user</key>

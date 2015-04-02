@@ -13,9 +13,9 @@
 	<key>category</key>
 	<string>System Update</string>
 	<key>description</key>
-	<string>Installs a LaunchDaemon that installs all Updates at 2 AM for laptops, and 5 AM for desktops.</string>
+	<string>Installs a LaunchDaemon that installs all Updates at 1 AM for laptops, and 5 AM for desktops.</string>
 	<key>developer</key>
-	<string>WardsParadox and ldooks</string>
+	<string>WardsParadox</string>
 	<key>display_name</key>
 	<string>Munki Overnight Update Utility</string>
 	<key>installer_item_hash</key>

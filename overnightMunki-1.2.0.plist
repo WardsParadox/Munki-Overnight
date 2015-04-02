@@ -21,7 +21,7 @@
 	<key>installer_item_hash</key>
 	<string>EDIT ME</string>
 	<key>installer_item_location</key>
-	<string>system_update/overnightMunki-1.1.0.dmg</string>
+	<string>system_update/overnightMunki-1.2.0.dmg</string>
 	<key>installer_item_size</key>
 	<integer>EDIT ME</integer>
 	<key>installer_type</key>
@@ -34,7 +34,7 @@
 			<key>type</key>
 			<string>plist</string>
 			<key>version</key>
-			<string>1.1.0</string>
+			<string>1.1.1</string>
 			<key>version_comparison_key</key>
 			<string>version</string>
 		</dict>
@@ -50,6 +50,8 @@
 			<string>com.example.overnightmunki.plist</string>
 			<key>user</key>
 			<string>root</string>
+			<key>mode</key>
+			<string>u=rw,go=r</string>
 		</dict>
 		<dict>
 			<key>destination_path</key>
@@ -57,7 +59,7 @@
 			<key>group</key>
 			<string>wheel</string>
 			<key>mode</key>
-			<string>rw-r--r--</string>
+			<string>u=rwx,go=rx</string>
 			<key>source_item</key>
 			<string>overnightMunki.py</string>
 			<key>user</key>
@@ -85,7 +87,7 @@ fi
 # Create a receipt for the printer
 mkdir -p /var/deployment/receipts/installs;
 /usr/libexec/PlistBuddy -c "Add :version string" /var/deployment/receipts/installs/overnightMunki.plist;
-/usr/libexec/PlistBuddy -c "Set :version 1.1.0" /var/deployment/receipts/installs/overnightMunki.plist;
+/usr/libexec/PlistBuddy -c "Set :version 1.1.1" /var/deployment/receipts/installs/overnightMunki.plist;
 
 exit 0;
 </string>

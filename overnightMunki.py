@@ -10,7 +10,7 @@ from sys import exit
 import syslog
 
 #Variables
-version = "1.1.1"
+version = "1.2.0"
 current_time = datetime.datetime.now().time().hour
 battery_query = re.findall(
   r'\d+%', subprocess.check_output('pmset -g batt', shell=True)
@@ -25,11 +25,11 @@ if (current_time != 01) and (current_time != 05):
     print 'It is not time to run updates.'
     syslog.syslog(syslog.LOG_ALERT, "It is %s and is not time to run updates " % current_time)
     exit(0);
-elif percentage >= 50 :#and ((current_time == 01) or (current_time == 05)) :
+elif percentage >= 50 :
   # Use --auto in case laptop does go to sleep,
   # When opened there will be no visual to the user and they can still log in
   syslog.syslog(syslog.LOG_ALERT, "Running ManagedSoftwareUpdate")
-  subprocess.call('/usr/bin/caffeinate -i /usr/local/munki/managedsoftwareupdate -v --auto',shell=True,stdout=subprocess.PIPE)
+  subprocess.call('/usr/local/munki/managedsoftwareupdate -v --auto',shell=True,stdout=subprocess.PIPE)
   time.sleep(5)
   os.system('shutdown -h now')
 

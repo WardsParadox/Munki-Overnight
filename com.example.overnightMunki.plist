@@ -6,6 +6,8 @@
 	<string>com.example.overnightMunki</string>
 	<key>ProgramArguments</key>
 	<array>
+		<string>/usr/bin/caffeinate</string>
+		<string>-i</string>
 		<string>/usr/local/etc/overnightMunki.py</string>
 	</array>
 	<key>RunAtLoad</key>

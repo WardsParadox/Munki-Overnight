@@ -101,7 +101,7 @@ mkdir -p /usr/local/etc;
 exit 0;</string>
 	<key>preuninstall_script</key>
 	<string>#!/bin/bash
-launchctl unload /Library/LaunchDaemons/com.example.overnightmunki.plist;
+launchctl unload /Library/LaunchDaemons/com.example.overnightMunki.plist;
 </string>
 	<key>unattended_install</key>
 	<true/>

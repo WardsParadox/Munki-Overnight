@@ -1,8 +1,15 @@
 #!/usr/bin/python
-version = "1.2.1"
-#Libraries
-import datetime, time, os, subprocess, re, syslog, urllib2
+# Libraries
+import datetime
+import time
+import os
+import subprocess
+import re
+import syslog
+import urllib2
 from sys import exit
+
+version = "1.2.1"
 # Move Open Log to Front of all
 syslog.openlog("Overnight Munki Updater V %s" % version)
 #Variables
@@ -16,7 +23,7 @@ percentage = ''.join(battery_query)[:-1]
 def runMunki():
     print percentage, "%s Battery"
     syslog.syslog(syslog.LOG_ALERT, "The battery is at %s %% " % percentage)
-    if current_time != 01 and current_time != 05:
+    if current_time != 01 and current_time != 13:
         print "Hour of Day:", current_time
         print 'It is not time to run updates.'
         syslog.syslog(syslog.LOG_ALERT, "It is %s and is not time to run updates " % current_time)
@@ -27,8 +34,7 @@ def runMunki():
         syslog.syslog(syslog.LOG_ALERT, "Running ManagedSoftwareUpdate")
         subprocess.call('/usr/local/munki/managedsoftwareupdate -v --auto',shell=True,stdout=subprocess.PIPE)
         time.sleep(5)
-        print "Test Successfully"
-        #os.system('shutdown -h now')
+        os.system('shutdown -h now')
     elif percentage <= 50:
         print 'Battery too low to run updates.'
         syslog.syslog(syslog.LOG_ALERT, "The battery is too low to run updates!! Battery at %s %%. Shutting Down" % percentage)
@@ -42,10 +48,9 @@ def internet_on():
 # Main Run
 while not internet_on():
     print "Attempting to connect, delaying by 5 sec"
-    time.sleep(5)
+    time.sleep(2)
     count = count + 1
     if count == 30:
-        exit("Could not connect withing time frame")
+        exit("Could not connect withing time frame, delayed by %s" % (count * 2))
 runMunki();
-print "Reached End"
-#os.system('shutdown -h now')
+os.system('shutdown -h now')

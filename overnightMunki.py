@@ -9,11 +9,10 @@ import syslog
 import urllib2
 from sys import exit
 
-version = "1.2.1"
+version = "1.3.0"
 # Move Open Log to Front of all
 syslog.openlog("Overnight Munki Updater V %s" % version)
 #Variables
-count = 0
 current_time = datetime.datetime.now().time().hour
 battery_query = re.findall(
   r'\d+%', subprocess.check_output('pmset -g batt', shell=True)
@@ -46,11 +45,8 @@ def internet_on():
     return False
 
 # Main Run
-while not internet_on():
-    print "Attempting to connect, delaying by 5 sec"
-    time.sleep(2)
-    count = count + 1
-    if count == 30:
-        exit("Could not connect withing time frame, delayed by %s" % (count * 2))
-runMunki();
+while True:
+ if internet_on():
+    break
+runMunki()
 os.system('shutdown -h now')

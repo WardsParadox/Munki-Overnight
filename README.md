@@ -1,4 +1,5 @@
 # Munki-Overnight
+**If anyone wants to attempt to get this fully functional, feel free to fork it. Let me know and I will re-direct people there**
 
 **Please note that a majority of users are reporting that this does not fully function for them. Please test this in your environment. Also look at pmset -a lidwake 0 . Your mileage may vary.**
 

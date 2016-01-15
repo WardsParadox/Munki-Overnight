@@ -14,7 +14,7 @@ syslog.openlog("Overnight Munki Updater V %s" % version)
 #Variables
 current_time = datetime.datetime.now().time().hour
 battery_query = re.findall(
-  r'\d+%', subprocess.check_output('/usr/bin/pmset -g batt', shell=True)
+  r'\d+%', subprocess.check_output(['/usr/bin/pmset', '-g', 'batt'])
 )
 percentage = ''.join(battery_query)[:-1]
 
@@ -30,13 +30,16 @@ def main():
         exit(0);
     elif percentage >= 50 :
         # Use --auto in case laptop does go to sleep,
-        # When opened there will be no visual to the user and they can still log in
+        # When opened there will be no visual indication to the user
+        # and they can still log in
         syslog.syslog(syslog.LOG_ALERT, "Running ManagedSoftwareUpdate")
         subprocess.call(['/usr/local/munki/managedsoftwareupdate','--auto'])
         subprocess.call(['shutdown','-h','now'])
     elif percentage <= 50:
         print 'Battery too low to run updates.'
-        syslog.syslog(syslog.LOG_ALERT, "The battery is too low to run updates!! Battery at %s %%. Shutting Down" % percentage)
+        syslog.syslog(syslog.LOG_ALERT,
+        "The battery is too low to run updates!! Battery at %s %%. \
+        Shutting Down" % percentage)
 def internet_on():
     try:
         response=urllib2.urlopen('https://www.google.com/',timeout=1)

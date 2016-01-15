@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>Label</key>
-	<string>com.example.overnightMunki</string>
+	<string>com.github.wardsparadox.overnightMunki</string>
 	<key>ProgramArguments</key>
 	<array>
 		<string>/usr/bin/caffeinate</string>
-		<string>-i</string>
+		<string>-is</string>
 		<string>/usr/local/etc/overnightMunki.py</string>
 	</array>
 	<key>RunAtLoad</key>

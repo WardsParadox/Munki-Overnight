@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# Set Laptop Wake Time to 2am
+#If the machine is a laptop, do some laptop-specific things
+IS_LAPTOP=$(/usr/sbin/system_profiler SPHardwareDataType | grep "Model Name" | grep "Book");
+if [ "$IS_LAPTOP" != "" ]; then
+sudo /usr/bin/pmset repeat wakeorpoweron MTWRF 01:00:00  shutdown MTWRFSU 18:00:00;
+else
+#Other Devices (Desktops) Run Later
+sudo /usr/bin/pmset repeat wakeorpoweron MTWRF 05:00:00 shutdown MTWRFSU 18:00:00;
+fi
+
+# Receipts
+# Create a receipt for the script
+/bin/mkdir -p /var/deployment/receipts/installs;
+/usr/libexec/PlistBuddy -c "Add :version string" /var/deployment/receipts/installs/overnightMunki.plist;
+/usr/libexec/PlistBuddy -c "Set :version 1.3.0" /var/deployment/receipts/installs/overnightMunki.plist;
+
+exit 0;

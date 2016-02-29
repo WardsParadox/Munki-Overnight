@@ -4,10 +4,17 @@
 #If the machine is a laptop, do some laptop-specific things
 IS_LAPTOP=$(/usr/sbin/system_profiler SPHardwareDataType | grep "Model Name" | grep "Book");
 if [ "$IS_LAPTOP" != "" ]; then
+<<<<<<< HEAD
 /usr/bin/pmset repeat wakeorpoweron MTWRF 01:00:00  shutdown MTWRFSU 18:00:00;
 else
 #Other Devices (Desktops) Run Later
 /usr/bin/pmset repeat wakeorpoweron MTWRF 05:00:00 shutdown MTWRFSU 18:00:00;
+=======
+sudo /usr/bin/pmset repeat wakeorpoweron MTWRF 01:00:00  shutdown MTWRFSU 18:00:00;
+else
+#Other Devices (Desktops) Run Later
+sudo /usr/bin/pmset repeat wakeorpoweron MTWRF 05:00:00 shutdown MTWRFSU 18:00:00;
+>>>>>>> 0608cc1d4f8d75e6cee96760ea8cd2c3d31b8b5d
 fi
 
 # Receipts

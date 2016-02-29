@@ -13,7 +13,6 @@ version = "1.3.1"
 syslog.openlog("Overnight Munki Updater V %s" % version)
 #Variables
 current_time = datetime.datetime.now().time().hour
-<<<<<<< HEAD
 
 
 # Functions
@@ -22,15 +21,6 @@ def laptops():
       r'\d+%', subprocess.check_output(['/usr/bin/pmset', '-g', 'batt'])
     )
     percentage = ''.join(battery_query)[:-1]
-=======
-battery_query = re.findall(
-  r'\d+%', subprocess.check_output('/usr/bin/pmset -g batt', shell=True)
-)
-percentage = ''.join(battery_query)[:-1]
-
-# Functions
-def main():
->>>>>>> 0608cc1d4f8d75e6cee96760ea8cd2c3d31b8b5d
     print "{0}% Battery".format(percentage)
     syslog.syslog(syslog.LOG_ALERT, "The battery is at %s%% " % percentage)
     if current_time != 01 and current_time != 05:
@@ -79,8 +69,4 @@ while True:
     break
 if __name__ == '__main__':
     main()
-<<<<<<< HEAD
     subprocess.call(['/sbin/shutdown','-h','now'])
-=======
-subprocess.call(['/sbin/shutdown','-h','now'])
->>>>>>> 0608cc1d4f8d75e6cee96760ea8cd2c3d31b8b5d

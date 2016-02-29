@@ -13,13 +13,14 @@ version = "1.3.1"
 syslog.openlog("Overnight Munki Updater V %s" % version)
 #Variables
 current_time = datetime.datetime.now().time().hour
-battery_query = re.findall(
-  r'\d+%', subprocess.check_output(['/usr/bin/pmset', '-g', 'batt'])
-)
-percentage = ''.join(battery_query)[:-1]
+
 
 # Functions
-def main():
+def laptops():
+    battery_query = re.findall(
+      r'\d+%', subprocess.check_output(['/usr/bin/pmset', '-g', 'batt'])
+    )
+    percentage = ''.join(battery_query)[:-1]
     print "{0}% Battery".format(percentage)
     syslog.syslog(syslog.LOG_ALERT, "The battery is at %s%% " % percentage)
     if current_time != 01 and current_time != 05:
@@ -40,12 +41,27 @@ def main():
         syslog.syslog(syslog.LOG_ALERT,
         "The battery is too low to run updates!! Battery at %s %%. \
         Shutting Down" % percentage)
+def desktops():
+        if current_time == 05:
+            # Use --auto in case laptop does go to sleep,
+            # When opened there will be no visual indication to the user
+            # and they can still log in
+            syslog.syslog(syslog.LOG_ALERT, "Running ManagedSoftwareUpdate")
+            subprocess.call(['/usr/local/munki/managedsoftwareupdate','--auto'])
+            subprocess.call(['shutdown','-h','now'])
+        else:
+            print 'It is not time to run updates.'
+            syslog.syslog(syslog.LOG_ALERT,
+            "Hour is %s and is not time to run updates " % current_time)
+            exit(0);
 def internet_on():
     try:
         response=urllib2.urlopen('https://www.google.com/',timeout=1)
         return True
     except urllib2.URLError as err: pass
     return False
+def main():
+
 
 # Main Run
 while True:
